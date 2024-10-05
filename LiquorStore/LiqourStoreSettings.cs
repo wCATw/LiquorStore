@@ -3,7 +3,8 @@ using MSCLoader;
 using UnityEngine;
 
 namespace LiquorStore;
-internal class LiquoreStoreSettings : MonoBehaviour
+
+internal class LiquorStoreSettings : MonoBehaviour
 {
     private FsmBool shadows;
     private Light[] lights;

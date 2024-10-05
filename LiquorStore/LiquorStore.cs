@@ -8,7 +8,7 @@ namespace LiquorStore;
 public class LiquorStore : Mod
 {
   internal GameObject liquorStore;
-  private LiquoreStoreSettings settings;
+  private LiquorStoreSettings settings;
   private AssetBundle ab;
 
   public override string ID => nameof (LiquorStore);
@@ -45,7 +45,7 @@ public class LiquorStore : Mod
     this.liquorStore.transform.localScale = new Vector3(1f, 1f, 1f);
     this.liquorStore.transform.SetParent((Transform) null, true);
     this.ab.Unload(false);
-    this.settings = ((Component) GameObject.Find("Systems").transform.Find("OptionsMenu")).gameObject.AddComponent<LiquoreStoreSettings>();
+    this.settings = ((Component) GameObject.Find("Systems").transform.Find("OptionsMenu")).gameObject.AddComponent<LiquorStoreSettings>();
     this.settings.Setup();
     SaveUtility.Load();
   }

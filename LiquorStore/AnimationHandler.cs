@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LiquorStore;
 
@@ -45,7 +46,7 @@ public class AnimationHandler : MonoBehaviour
     }
     else
     {
-      if (!Object.op_Inequality((Object)this.lastClip, (Object)null))
+      if (this.lastClip is null)
         return;
       this.time = this.anim[this.lastClip.animName].time;
     }

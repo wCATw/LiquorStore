@@ -1,4 +1,5 @@
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace LiquorStore;
 public class GarbageBurner : MonoBehaviour
@@ -7,9 +8,9 @@ public class GarbageBurner : MonoBehaviour
     {
         CustomLiquorCase component1 = ((Component) other).GetComponent<CustomLiquorCase>();
         DrinkBehaviour component2 = ((Component) other).GetComponent<DrinkBehaviour>();
-        if (Object.op_Inequality((Object) component1, (Object) null) && ((IEnumerable<GameObject>) component1.bottles).Where<GameObject>((Func<GameObject, bool>) (x => x.activeSelf)).Count<GameObject>() <= 0)
-            Object.Destroy((Object) ((Component) other).gameObject);
-        if (!Object.op_Inequality((Object) component2, (Object) null) || !component2.isEmpty)
+        if (component1 != null && component1.bottles.Where(x => x.activeSelf).Count() <= 0)
+            Object.Destroy(other.gameObject);
+        if (component2 == null || !component2.isEmpty)
             return;
         Object.Destroy((Object) ((Component) other).gameObject);
     }

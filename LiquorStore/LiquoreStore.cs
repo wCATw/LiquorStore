@@ -1,36 +1,38 @@
-using LiquorStore.Properties;
 using MSCLoader;
 using UnityEngine;
+using Resources = LiquorStore.Properties.Resources;
+using Object = UnityEngine.Object;
 
 namespace LiquorStore;
+
 public class LiquorStore : Mod
 {
   internal GameObject liquorStore;
   private LiquoreStoreSettings settings;
   private AssetBundle ab;
 
-  public virtual string ID => nameof (LiquorStore);
+  public override string ID => nameof (LiquorStore);
 
-  public virtual string Name => nameof (LiquorStore);
+  public override string Name => nameof (LiquorStore);
 
-  public virtual string Author => "BrennFuchS";
+  public override string Author => "BrennFuchS";
 
-  public virtual string Version => "0.2.3";
+  public override string Version => "0.2.3";
 
-  public virtual string Description => description.random();
+  public override string Description => description.random();
 
-  public virtual string UpdateLink => "https://www.nexusmods.com/mysummercar/mods/865";
+  public override string UpdateLink => "https://www.nexusmods.com/mysummercar/mods/865";
 
-  public virtual byte[] Icon => Resources.Icon;
+  public override byte[] Icon => Resources.Icon;
 
-  public virtual void OnNewGame() => SaveUtility.Remove();
+  public override void OnNewGame() => SaveUtility.Remove();
 
-  public virtual void OnLoad()
+  public override void OnLoad()
   {
     this.ab = AssetBundle.CreateFromMemoryImmediate(Resources.liquorstore);
   }
 
-  public virtual void PostLoad()
+  public override void PostLoad()
   {
     ((Component) GameObject.Find("PERAJARVI").transform.Find("HouseRintama2")).gameObject.SetActive(false);
     ((Component) GameObject.Find("garbage barrel(itemx)").transform.Find("Fire/GarbageTrigger")).gameObject.AddComponent<GarbageBurner>();
@@ -48,5 +50,5 @@ public class LiquorStore : Mod
     SaveUtility.Load();
   }
 
-  public virtual void OnSave() => SaveUtility.Save();
+  public override void OnSave() => SaveUtility.Save();
 }

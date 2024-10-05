@@ -3,6 +3,8 @@ using HutongGames.PlayMaker;
 using MSCLoader;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 namespace LiquorStore;
 
@@ -100,7 +102,7 @@ public class DrinkBehaviour : MonoBehaviour
     this.raycastedObject = this.hand.FsmVariables.FindFsmGameObject("RaycastHitObject");
     this.rigidbody = ((Component) ((Component) this).transform).GetComponent<Rigidbody>();
     this.renderer = ((Component) ((Component) this).transform).GetComponent<MeshRenderer>();
-    if (Object.op_Equality((Object) this.trigger, (Object) null))
+    if (this.trigger == null)
       this.StartCoroutine(this.Drink());
     if (this.isEmpty)
       ((Object) ((Component) this).gameObject).name = this.drinkEmptyName;
@@ -147,7 +149,7 @@ public class DrinkBehaviour : MonoBehaviour
   public IEnumerator Drink()
   {
     DrinkBehaviour drinkBehaviour = this;
-    if (Object.op_Equality((Object) drinkBehaviour.pickedObject.Value, (Object) ((Component) drinkBehaviour).gameObject))
+    if (drinkBehaviour.pickedObject.Value == ((Component) drinkBehaviour).gameObject)
     {
       drinkBehaviour.raycastedObject.Value = (GameObject) null;
       drinkBehaviour.pickedObject.Value = (GameObject) null;
@@ -155,7 +157,7 @@ public class DrinkBehaviour : MonoBehaviour
     }
     ((Behaviour) drinkBehaviour.playerFunctions).enabled = false;
     drinkBehaviour.isEmpty = true;
-    if (Object.op_Equality((Object) drinkBehaviour.drinkSFX, (Object) null))
+    if ((Object) drinkBehaviour.drinkSFX == null)
       MasterAudio.PlaySound3DAndForget("PlayerMisc", ((Component) drinkBehaviour.fpsCam).transform, true, 1f, new float?(1f), 0.0f, "drinking");
     else
       AudioSource.PlayClipAtPoint(drinkBehaviour.drinkSFX, ((Component) drinkBehaviour.fpsCam).transform.position, 1f);
@@ -172,7 +174,7 @@ public class DrinkBehaviour : MonoBehaviour
     drinkBehaviour.drinkMeshFilter.mesh = drinkBehaviour.openDrinkMesh;
     if (drinkBehaviour.hasCap)
     {
-      if (Object.op_Equality((Object) drinkBehaviour.capSFX, (Object) null))
+      if ((Object) drinkBehaviour.capSFX == null)
         MasterAudio.PlaySound3DAndForget("HouseFoley", ((Component) drinkBehaviour.handAnim).transform.parent, false, 1f, new float?(1f), 0.0f, "bottle_cap");
       else
         AudioSource.PlayClipAtPoint(drinkBehaviour.capSFX, ((Component) drinkBehaviour.fpsCam).transform.position, 1f);
@@ -199,7 +201,7 @@ public class DrinkBehaviour : MonoBehaviour
     ((Object) ((Component) ((Component) drinkBehaviour).transform).gameObject).name = drinkBehaviour.drinkEmptyName;
     drinkBehaviour.rigidbody.isKinematic = false;
     drinkBehaviour.rigidbody.velocity = Vector3.zero;
-    drinkBehaviour.rigidbody.AddRelativeForce(Vector3.op_Multiply(drinkBehaviour.forceAxis, 150f), (ForceMode) 0);
+    drinkBehaviour.rigidbody.AddRelativeForce(drinkBehaviour.forceAxis * 150f, ForceMode.Force);
     drinkBehaviour.stress.Value += drinkBehaviour.stressAdd;
     MasterAudio.PlaySound3DAndForget("Burb", ((Component) drinkBehaviour.handAnim).transform.parent, false, 1f, new float?(1f), 0.0f, string.Format("burb0{0}", (object) Random.Range(1, 3)));
     ((Component) ((Component) drinkBehaviour).transform).tag = "ITEM";

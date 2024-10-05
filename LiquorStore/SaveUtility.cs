@@ -1,6 +1,7 @@
 using MSCLoader;
 using Newtonsoft.Json;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace LiquorStore;
   
@@ -14,7 +15,7 @@ public class SaveUtility : MonoBehaviour
 
   private static bool IsPrefab(Transform transform)
   {
-    return !((Component) transform).gameObject.activeInHierarchy && ((Component) transform).gameObject.activeSelf && Object.op_Equality((Object) transform.root, (Object) transform);
+    return !transform.gameObject.activeInHierarchy && transform.gameObject.activeSelf && transform.root == transform;
   }
 
   private void Start() => SaveUtility.instance = this;
@@ -87,7 +88,7 @@ public class SaveUtility : MonoBehaviour
 
   public static void Load()
   {
-    if (Object.op_Equality((Object) SaveUtility.instance, (Object) null))
+    if (SaveUtility.instance == null)
       SaveUtility.instance = ((IEnumerable<SaveUtility>) Resources.FindObjectsOfTypeAll<SaveUtility>()).First<SaveUtility>();
     SaveData saveData1 = new SaveData();
     if (File.Exists(SaveUtility.savePath1))

@@ -1,6 +1,8 @@
 using HutongGames.PlayMaker;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 namespace LiquorStore;
 

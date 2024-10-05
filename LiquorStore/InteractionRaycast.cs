@@ -18,23 +18,24 @@ public class InteractionRaycast : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Object.op_Implicit((Object) this.FPScam))
+        if (!this.FPScam)
             return;
-        this.hasHit = Physics.Raycast(this.FPScam.ScreenPointToRay(Input.mousePosition), ref this.hitInfo, this.rayDistance, LayerMask.op_Implicit(this.layerMask));
+        this.hasHit = Physics.Raycast(this.FPScam.ScreenPointToRay(Input.mousePosition), out this.hitInfo, this.rayDistance, this.layerMask);
     }
 
     public bool GetHit(Collider collider)
     {
-        return this.hasHit && Object.op_Equality((Object) ((RaycastHit) ref this.hitInfo).collider, (Object) collider);
+        return this.hasHit = Physics.Raycast(this.FPScam.ScreenPointToRay(Input.mousePosition), out this.hitInfo, this.rayDistance, this.layerMask);
     }
 
     public bool GetHitAny(Collider[] colliders)
     {
-        return this.hasHit && ((IEnumerable<Collider>) colliders).Any<Collider>((Func<Collider, bool>) (collider => Object.op_Equality((Object) collider, (Object) ((RaycastHit) ref this.hitInfo).collider)));
+        return this.hasHit && colliders.Any(collider => collider == this.hitInfo.collider);
     }
 
     public bool GetHitAny(List<Collider> colliders)
     {
-        return this.hasHit && colliders.Any<Collider>((Func<Collider, bool>) (collider => Object.op_Equality((Object) collider, (Object) ((RaycastHit) ref this.hitInfo).collider)));
+        return this.hasHit && colliders.Any(collider => collider == this.hitInfo.collider);
+
     }
 }

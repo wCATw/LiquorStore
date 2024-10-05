@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <Title>LiquorStore</Title>
         <Authors />
         <Description>A My Summer Car Mod</Description>
@@ -15,8 +15,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="cInput">
+        <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\My Summer Car\mysummercar_Data\Managed\cInput.dll</HintPath>
+      </Reference>
       <Reference Include="MSCLoader">
         <HintPath>..\..\..\..\..\Program Files (x86)\MSCLoader\MSCLoader.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayMaker">
+        <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\My Summer Car\mysummercar_Data\Managed\PlayMaker.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\My Summer Car\mysummercar_Data\Managed\UnityEngine.dll</HintPath>
       </Reference>
     </ItemGroup>
 

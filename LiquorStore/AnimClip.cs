@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
-#nullable disable
 namespace LiquorStore;
+
 public class AnimClip : ScriptableObject
 {
     public string animName;
